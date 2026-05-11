@@ -1,26 +1,13 @@
-// Ticket Model - MongoDB Schema
 const mongoose = require('mongoose');
 
 const ticketSchema = new mongoose.Schema({
-  ticketId: {
+    guildId: String,
+    userId: String,
+    channelId: String,
     type: String,
-    required: true,
-    unique: true
-  },
-  guildId: String,
-  userId: String,
-  channelId: String,
-  status: {
-    type: String,
-    enum: ['open', 'closed', 'locked'],
-    default: 'open'
-  },
-  reason: String,
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
-  closedAt: Date
+    status: { type: String, default: 'open' },
+    claimedBy: { type: String, default: null },
+    createdAt: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Ticket', ticketSchema);
